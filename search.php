@@ -36,6 +36,7 @@ function filterTable($query)
          <input type="submit" name="search" value="Filter">
          <table>
             <tr>
+              	<th>No</th>
                <th>Name</th>
                <th>Address</th>
                <th>Age</th>
@@ -44,6 +45,8 @@ function filterTable($query)
             <!-- populate table from mysql database -->
             <?php while($row = mysqli_fetch_array($search_result)):?>
             <tr>
+             <!-- change soon -->
+              <?php echo "<td class='personid'></td>";?>
                <td><?php echo $row['Name'];?></td>
                <td><?php echo $row['Address'];?></td>
                <td><?php echo $row['Age'];?></td>
@@ -52,5 +55,11 @@ function filterTable($query)
             <?php endwhile;?>
          </table>
       </form>
+      <script>
+    		var list = document.getElementsByClassName("personid");
+			for (var i = 0; i <= list.length-1; i++) {
+    			list[i].innerHTML = i+1;
+			}	
+	   </script>
    </body>
 </html>

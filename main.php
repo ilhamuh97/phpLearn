@@ -29,18 +29,25 @@
          			if(mysqli_num_rows($result) > 0){
              			echo "<table>";
                  			echo "<tr>";
+								echo "<th>No</th>";;
                      			echo "<th>Name</th>";
                      			echo "<th>Address</th>";
                      			echo "<th>Age</th>";
                      			echo "<th>Gender</th>";
+								echo "<th> </th>";
                  			echo "</tr>";
              				while($row = mysqli_fetch_array($result)){
+								echo array_search('Ilham Muhammad',$row[0]);
                  			echo "<tr>";
+								echo "<td class='personid'></td>";
                      			echo "<td>" . $row[0] . "</td>";
                      			echo "<td>" . $row[1] . "</td>";
                      			echo "<td>" . $row[2] . "</td>";
                      			echo "<td>" . $row[3] . "</td>";
+								echo "<td> <a href='search.php'>Delete</a> </td>";
+								$no = $no + 1;
                  			echo "</tr>";
+								
              				}
              			echo "</table>";
              			// Free result set
@@ -52,5 +59,11 @@
          		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
          }
          ?>
+		<script>
+    		var list = document.getElementsByClassName("personid");
+			for (var i = 0; i <= list.length-1; i++) {
+    			list[i].innerHTML = i+1;
+			}	
+	   </script>
    </body>
 </html>
