@@ -52,7 +52,10 @@ function filterTable($query)
                <td><?php echo $row['Age'];?></td>
                <td><?php echo $row['Gender'];?></td>
             </tr>
-            <?php endwhile;?>
+            <?php 
+			 endwhile;
+			 mysqli_close($conn);
+			 ?>
          </table>
       </form>
       <script>

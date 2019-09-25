@@ -28,5 +28,5 @@ if ($conn->connect_error) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
+mysqli_close($conn);
 ?>

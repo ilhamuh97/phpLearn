@@ -21,33 +21,32 @@
          if ($conn->connect_error) {
          			die("Connection failed: " . $conn->connect_error);
          }
-         echo "Connected successfully";
+         //echo "Connected successfully";
          
          //call sql items
          $sql = "SELECT * FROM Users";
+	    ?>
+       <form method="POST" action="delete.php">
+        <?php
          if($result = mysqli_query($conn, $sql)){
          			if(mysqli_num_rows($result) > 0){
              			echo "<table>";
                  			echo "<tr>";
-								echo "<th>No</th>";;
+								echo "<th>No</th>";
+								echo "<th>Select</th>";
                      			echo "<th>Name</th>";
                      			echo "<th>Address</th>";
                      			echo "<th>Age</th>";
                      			echo "<th>Gender</th>";
-								echo "<th> </th>";
                  			echo "</tr>";
              				while($row = mysqli_fetch_array($result)){
-								echo array_search('Ilham Muhammad',$row[0]);
                  			echo "<tr>";
 								echo "<td class='personid'></td>";
-                     			echo "<td>" . $row[0] . "</td>";
+                     			echo "<td><input type ='checkbox' name ='checkbox[]' value ='" . $row[0] . "'></td><td>" . $row[0] . "</td>";
                      			echo "<td>" . $row[1] . "</td>";
                      			echo "<td>" . $row[2] . "</td>";
                      			echo "<td>" . $row[3] . "</td>";
-								echo "<td> <a href='search.php'>Delete</a> </td>";
-								$no = $no + 1;
                  			echo "</tr>";
-								
              				}
              			echo "</table>";
              			// Free result set
@@ -58,7 +57,10 @@
          }else{
          		echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
          }
+		   mysqli_close($conn);
          ?>
+         <input type="submit" name="delete" id="delete" value="delete records">
+         </form>
 		<script>
     		var list = document.getElementsByClassName("personid");
 			for (var i = 0; i <= list.length-1; i++) {
